@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Welcome, {{ volunteer.name }}</h2>
+
+<h3>Your Assigned Cases</h3>
+
+{% if case_details %}
+<table border="1" cellpadding="6">
+    <thead>
+        <tr>
+            <th>Description</th>
+            <th>Amount Requested</th>
+            <th>Status</th>
+            <th>Verification Status</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in case_details %}
+        <tr>
+            <td>{{ item.case.description }}</td>
+            <td>₹{{ item.case.amount_requested }}</td>
+            <td>{{ item.case.status }}</td>
+            <td>{{ item.verification_status }}</td>
+            <td>
+                {% if item.verification_status == 'Not Submitted' %}
+                <a href="{{ url_for('volunteer.submit_verification', case_id=item.case.id) }}">Submit Verification</a>
+                {% else %}
+                Completed
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>No cases assigned to you yet.</p>
+{% endif %}
+{% endblock %}

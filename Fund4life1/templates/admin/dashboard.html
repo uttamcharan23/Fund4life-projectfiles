@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Admin Dashboard</h2>
+<ul>
+    <li>Total Donations: ₹{{ total_donations }}</li>
+    <li>Donors Registered: {{ donors }}</li>
+    <li>NGOs Registered: {{ ngos }}</li>
+    <li>Emergency Cases Submitted: {{ cases }}</li>
+</ul>
+<a href="{{ url_for('admin.ngo_approvals') }}">NGO Approvals</a> |
+<a href="{{ url_for('admin.cases') }}">Manage Emergency Cases</a>
+{% endblock %}

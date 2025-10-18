@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Welcome, {{ donor.name }}</h2>
+<p>Phone: {{ donor.phone }}</p> <!-- Show phone number -->
+
+<h3>Dashboard</h3>
+<p>Total Donated: ₹{{ total_donated }}</p>
+
+<h4>Your Donations</h4>
+<ul>
+{% for d in donations %}
+    <li>₹{{ d.amount }} on {{ d.timestamp.strftime('%Y-%m-%d') }}</li>
+{% else %}
+    <li>No donations yet.</li>
+{% endfor %}
+</ul>
+
+<h4>Add a Donation</h4>
+<form method="POST" action="{{ url_for('donor.donate') }}">
+    <input type="number" name="amount" step="0.01" placeholder="Amount (INR)" required>
+    <button type="submit">Donate</button>
+</form>
+
+<h4>Submit Emergency Request</h4>
+<form method="POST" action="{{ url_for('donor.emergency_request') }}" enctype="multipart/form-data">
+    <textarea name="description" placeholder="Describe your emergency" required></textarea><br><br>
+    <input type="number" name="amount_requested" step="0.01" placeholder="Requested Amount" required><br><br>
+    <input type="file" name="document"><br><br>
+    <button type="submit">Submit Request</button>
+</form>
+
+<h4>Your Emergency Cases</h4>
+<ul>
+{% for c in cases %}
+    <li>
+        {{ c.description }} | ₹{{ c.amount_requested }} | Status: {{ c.status }}
+        {% if c.document_filename %}
+            | <a href="{{ url_for('static', filename='documents/' ~ c.document_filename) }}" target="_blank">Document</a>
+        {% endif %}
+    </li>
+{% else %}
+    <li>No emergency cases submitted.</li>
+{% endfor %}
+</ul>
+{% endblock %}

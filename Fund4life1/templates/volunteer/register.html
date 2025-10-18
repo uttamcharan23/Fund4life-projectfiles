@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Volunteer Registration</h2>
+
+<form method="POST">
+    <label for="name">Name:</label><br>
+    <input type="text" name="name" required><br><br>
+
+    <label for="email">Email:</label><br>
+    <input type="email" name="email" required><br><br>
+
+    <label for="phone">Phone:</label><br>
+    <input type="text" name="phone" required><br><br>
+
+
+    <label for="password">Password:</label><br>
+    <input type="password" name="password" required><br><br>
+
+    <button type="submit">Register</button>
+</form>
+
+<a href="{{ url_for('volunteer_auth.login') }}">Already have an account? Login</a>
+{% endblock %}

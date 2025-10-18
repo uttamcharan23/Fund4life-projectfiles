@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Submit Verification for Case</h2>
+
+<p><strong>Description:</strong> {{ case.description }}</p>
+
+<form method="POST" enctype="multipart/form-data">
+    <label for="live_photo">Live Photo:<span style="color:red">*</span></label><br>
+    <input type="file" name="live_photo" required><br><br>
+
+    <label for="verified_docs">Verified Documents:</label><br>
+    <input type="file" name="verified_docs"><br><br>
+
+    <label for="comments">Comments:</label><br>
+    <textarea name="comments" rows="4" cols="50"></textarea><br><br>
+
+    <button type="submit">Submit Verification</button>
+</form>
+
+<a href="{{ url_for('volunteer.dashboard') }}">Back to Dashboard</a>
+{% endblock %}

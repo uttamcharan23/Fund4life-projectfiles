@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Update Case Status</h2>
+
+<p><strong>Case Description:</strong> {{ case.description }}</p>
+
+<form method="POST">
+    <label for="status">Select New Status:</label><br>
+    <select name="status" required>
+        <option value="">--Choose a status--</option>
+        <option value="Pending" {% if case.status == 'Pending' %}selected{% endif %}>Pending</option>
+        <option value="Under Review" {% if case.status == 'Under Review' %}selected{% endif %}>Under Review</option>
+        <option value="Verified by Volunteer" {% if case.status == 'Verified by Volunteer' %}selected{% endif %}>Verified by Volunteer</option>
+        <option value="Approved by NGO" {% if case.status == 'Approved by NGO' %}selected{% endif %}>Approved by NGO</option>
+        <option value="Funds Released" {% if case.status == 'Funds Released' %}selected{% endif %}>Funds Released</option>
+        <option value="Rejected" {% if case.status == 'Rejected' %}selected{% endif %}>Rejected</option>
+    </select><br><br>
+
+    <button type="submit">Update Status</button>
+</form>
+
+<a href="{{ url_for('ngo.dashboard') }}">Back to Dashboard</a>
+{% endblock %}

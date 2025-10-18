@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>NGO Approvals</h2>
+<table border="1" cellpadding="6">
+    <thead>
+        <tr><th>Name</th><th>Email</th><th>Status</th><th>Action</th></tr>
+    </thead>
+    <tbody>
+        {% for ngo in ngos %}
+        <tr>
+            <td>{{ ngo.name }}</td>
+            <td>{{ ngo.email }}</td>
+            <td>{{ 'Approved' if ngo.is_approved else 'Pending' }}</td>
+            <td>
+                <form method="POST" style="display:inline;">
+                    <input type="hidden" name="ngo_id" value="{{ ngo.id }}">
+                    <button name="action" value="approve" type="submit">Approve</button>
+                    <button name="action" value="reject" type="submit">Reject</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

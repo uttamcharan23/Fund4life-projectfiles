@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Register as Donor</h2>
+<form method="POST">
+    <input name="name" placeholder="Full Name" required><br><br>
+    <input name="email" placeholder="Email" type="email" required><br><br>
+    <input name="phone" placeholder="Phone Number" type="text" required><br><br>
+    <input name="password" placeholder="Password" type="password" required><br><br>
+    <button type="submit">Register</button>
+</form>
+<p>Already registered? <a href="{{ url_for('auth.login') }}">Login here</a>.</p>
+{% endblock %}

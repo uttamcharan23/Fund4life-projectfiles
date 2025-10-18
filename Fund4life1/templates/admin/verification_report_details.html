@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Verification Report Details</h2>
+
+<p><strong>Case ID:</strong> {{ report.case_id }}</p>
+<p><strong>Volunteer:</strong> {{ report.volunteer.name }}</p>
+<p><strong>Status:</strong> {{ report.status }}</p>
+<p><strong>Submitted At:</strong> {{ report.submitted_at }}</p>
+
+{% if report.document %}
+    <p><a href="{{ url_for('admin.uploaded_file', filename=report.document) }}" target="_blank">View Document</a></p>
+{% endif %}
+
+<p><strong>Comments:</strong> {{ report.comments }}</p>
+
+<a href="{{ url_for('admin.verification_reports') }}">Back to Reports</a>
+{% endblock %}

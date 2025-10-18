@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Welcome to Fund4Life</h1>
+    <p>A community-driven donation and emergency assistance platform.</p>
+    <ul>
+        <li><a href="{{ url_for('auth.register') }}">Register as Donor</a></li>
+        <li><a href="{{ url_for('auth.login') }}">Donor Login</a></li>
+        <li><a href="{{ url_for('ngo.register') }}">Register as NGO</a></li>
+        <li><a href="{{ url_for('ngo.login') }}">NGO Login</a></li>
+        <li><a href="{{ url_for('volunteer_auth.register') }}">Register as Volunteer</a></li>
+        <li><a href="{{ url_for('volunteer_auth.login') }}">Volunteer Login</a></li>
+        <li><a href="{{ url_for('admin.login') }}">Admin Login</a></li>
+    </ul>
+{% endblock %}

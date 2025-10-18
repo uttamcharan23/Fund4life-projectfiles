@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Volunteer Login</h2>
+
+<form method="POST">
+    <label for="email">Email:</label><br>
+    <input type="email" name="email" required><br><br>
+
+    <label for="password">Password:</label><br>
+    <input type="password" name="password" required><br><br>
+
+    <button type="submit">Login</button>
+</form>
+
+<a href="{{ url_for('volunteer_auth.register') }}">Register as Volunteer</a>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Verification Reports</h2>
+<table border="1" cellpadding="6">
+    <thead>
+        <tr><th>Case ID</th><th>Volunteer</th><th>Status</th><th>Submitted At</th><th>Details</th></tr>
+    </thead>
+    <tbody>
+        {% for report in reports %}
+        <tr>
+            <td>{{ report.case_id }}</td>
+            <td>{{ report.volunteer.name }}</td>
+            <td>{{ report.status }}</td>
+            <td>{{ report.submitted_at }}</td>
+            <td><a href="{{ url_for('admin.verification_report_details', report_id=report.id) }}">View</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

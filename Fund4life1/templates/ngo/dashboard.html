@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Welcome, {{ ngo.name }}</h2>
+
+<h3>Cases Assigned to You</h3>
+
+{% if case_details %}
+<table border="1" cellpadding="6">
+  <thead>
+    <tr>
+      <th>Case Description</th>
+      <th>Amount Requested</th>
+      <th>Assigned Volunteer</th>
+      <th>Verification Status</th>
+      <th>Amount Released</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for item in case_details %}
+    <tr>
+      <td>{{ item.case.description }}</td>
+      <td>₹{{ item.case.amount_requested }}</td>
+      <td>{{ item.volunteer.name if item.volunteer else 'Not Assigned' }}</td>
+      <td>{{ item.verification_status }}</td>
+      <td>₹{{ item.case.amount_released if item.case.amount_released else '0' }}</td>
+      <td>
+        <!-- For example, links to assign volunteer, update status, upload docs etc. -->
+        <a href="{{ url_for('ngo.assign_volunteer', case_id=item.case.id) }}">Assign Volunteer</a> |
+        <a href="{{ url_for('ngo.update_case_status', case_id=item.case.id) }}">Update Status</a>
+      </td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<p>No cases assigned to your NGO yet.</p>
+{% endif %}
+
+<a href="{{ url_for('ngo.logout') }}">Logout</a>
+{% endblock %}

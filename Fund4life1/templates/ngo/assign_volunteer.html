@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Assign Volunteer to Case</h2>
+
+<p><strong>Case Description:</strong> {{ case.description }}</p>
+
+<form method="POST">
+    <label for="volunteer_id">Select Volunteer:</label><br>
+    <select name="volunteer_id" required>
+        <option value="">--Choose a volunteer--</option>
+        {% for volunteer in volunteers %}
+        <option value="{{ volunteer.id }}">{{ volunteer.name }} - {{ volunteer.email }}</option>
+        {% endfor %}
+    </select><br><br>
+
+    <button type="submit">Assign Volunteer</button>
+</form>
+
+<a href="{{ url_for('ngo.dashboard') }}">Back to Dashboard</a>
+{% endblock %}
